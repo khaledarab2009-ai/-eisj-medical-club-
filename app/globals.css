@@ -1,13 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  --navy: #071a2f;
-  --blue: #0b4f8a;
-  --cyan: #18b7c9;
-  --light: #f4f9fc;
+  --navy: #062b49;
+  --blue: #087ea4;
+  --cyan: #27c7df;
+  --light: #f5fbfd;
   --white: #ffffff;
-  --text: #142033;
-  --muted: #64748b;
+  --text: #102a43;
+  --muted: #627d98;
+  --border: #d9e9ef;
+  --shadow: 0 12px 35px rgba(6, 43, 73, 0.10);
 }
 
 * {
@@ -23,13 +25,16 @@ html {
 body {
   background: var(--light);
   color: var(--text);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+  line-height: 1.6;
   overflow-x: hidden;
-}
-
-::selection {
-  background: var(--cyan);
-  color: var(--white);
 }
 
 a {
@@ -37,49 +42,326 @@ a {
   text-decoration: none;
 }
 
-button,
-a {
-  -webkit-tap-highlight-color: transparent;
+button {
+  font: inherit;
 }
 
-.hero-gradient {
-  background:
-    radial-gradient(
-      circle at 80% 20%,
-      rgba(24, 183, 201, 0.25),
-      transparent 35%
-    ),
-    linear-gradient(
-      135deg,
-      #041426 0%,
-      #082f55 55%,
-      #0b5d78 100%
-    );
+/* =========================
+   MAIN CONTAINER
+========================= */
+
+main,
+section {
+  width: 100%;
 }
 
-.glass {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.16);
+section {
+  padding: 90px 6%;
+}
+
+section > div {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* =========================
+   HEADINGS
+========================= */
+
+h1,
+h2,
+h3,
+h4 {
+  color: var(--text);
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+}
+
+h1 {
+  font-size: clamp(3rem, 7vw, 6.5rem);
+  font-weight: 800;
+}
+
+h2 {
+  font-size: clamp(2.3rem, 5vw, 4.5rem);
+  font-weight: 800;
+}
+
+h3 {
+  font-size: 1.5rem;
+  font-weight: 750;
+}
+
+p {
+  color: var(--muted);
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(217, 233, 239, 0.9);
+  box-shadow: 0 4px 20px rgba(6, 43, 73, 0.05);
 }
 
-.premium-shadow {
-  box-shadow: 0 24px 70px rgba(7, 26, 47, 0.16);
+nav a {
+  transition: 0.25s ease;
 }
 
-.text-gradient {
-  background: linear-gradient(
-    90deg,
-    #ffffff,
-    #8ee8ef
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+nav a:hover {
+  color: var(--blue);
 }
 
-.section-container {
-  width: min(1120px, calc(100% - 40px));
-  margin-inline: auto;
+/* =========================
+   HERO
+========================= */
+
+.hero {
+  min-height: 88vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 85% 20%, rgba(39, 199, 223, 0.22), transparent 30%),
+    radial-gradient(circle at 15% 85%, rgba(8, 126, 164, 0.12), transparent 30%),
+    linear-gradient(135deg, #ffffff 0%, #eefaff 100%);
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  right: -160px;
+  top: 80px;
+  border-radius: 50%;
+  background: rgba(39, 199, 223, 0.12);
+  filter: blur(5px);
+}
+
+.hero > div {
+  position: relative;
+  z-index: 1;
+}
+
+.hero p {
+  max-width: 720px;
+  font-size: clamp(1.05rem, 2vw, 1.35rem);
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+button,
+.btn,
+a[class*="button"],
+a[class*="btn"] {
+  border-radius: 999px;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+button:hover,
+.btn:hover,
+a[class*="button"]:hover,
+a[class*="btn"]:hover {
+  transform: translateY(-2px);
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.card,
+[class*="card"] {
+  border-radius: 28px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: var(--shadow);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.card:hover,
+[class*="card"]:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 45px rgba(6, 43, 73, 0.14);
+  border-color: rgba(39, 199, 223, 0.5);
+}
+
+/* =========================
+   ICON BOXES
+========================= */
+
+[class*="icon"] {
+  border-radius: 20px;
+}
+
+/* =========================
+   TEAM / LEADERSHIP
+========================= */
+
+.team,
+.leadership {
+  background: var(--navy);
+  color: white;
+}
+
+.team h2,
+.team h3,
+.leadership h2,
+.leadership h3 {
+  color: white;
+}
+
+.team p,
+.leadership p {
+  color: #b9d4e2;
+}
+
+/* =========================
+   SPONSOR SECTION
+========================= */
+
+.sponsor,
+.sponsors {
+  position: relative;
+  overflow: hidden;
+}
+
+.sponsor::before,
+.sponsors::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 90% 20%, rgba(39, 199, 223, 0.12), transparent 30%);
+  pointer-events: none;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+  background: #041c31;
+  color: white;
+  padding: 50px 6%;
+}
+
+footer p {
+  color: #a9c5d4;
+}
+
+footer a:hover {
+  color: var(--cyan);
+}
+
+/* =========================
+   IMAGES
+========================= */
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+  section {
+    padding: 65px 20px;
+  }
+
+  .hero {
+    min-height: 80vh;
+    padding: 70px 20px;
+  }
+
+  h1 {
+    font-size: clamp(2.8rem, 14vw, 4.5rem);
+  }
+
+  h2 {
+    font-size: clamp(2.2rem, 11vw, 3.5rem);
+  }
+
+  h3 {
+    font-size: 1.35rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  nav {
+    position: sticky;
+  }
+
+  .card,
+  [class*="card"] {
+    border-radius: 22px;
+  }
+}
+
+/* =========================
+   SMALL PHONES
+========================= */
+
+@media (max-width: 430px) {
+  section {
+    padding: 55px 16px;
+  }
+
+  .hero {
+    padding: 55px 16px;
+  }
+
+  h1 {
+    font-size: 3rem;
+  }
+
+  h2 {
+    font-size: 2.35rem;
+  }
+}
+
+/* =========================
+   ACCESSIBILITY
+========================= */
+
+:focus-visible {
+  outline: 3px solid var(--cyan);
+  outline-offset: 4px;
+}
+
+/* =========================
+   REDUCE MOTION
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
 }
